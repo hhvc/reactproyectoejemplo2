@@ -6,7 +6,7 @@ export const UserForm = () => {
     const { form, setForm, handleChanges } = useUserForm();
 
     const [areEquals, setAreEquals] = useState(true);
-    const [passwordConfirmation, setPasswordConfirmation] = useState();
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
     const handlePasswordConfirmation = (e) => {
         setPasswordConfirmation(e.target.value);
@@ -16,7 +16,7 @@ export const UserForm = () => {
     useEffect(() => {
         const { password } = form;
         setAreEquals(password === passwordConfirmation);
-    }, [passwordConfirmation])
+    }, [form.password, passwordConfirmation])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -49,7 +49,7 @@ export const UserForm = () => {
                             Clave
                         </label>
                         <input
-                            type='text'
+                            type='password'
                             className='form-control'
                             placeholder='Clave'
                             name='password'
@@ -62,7 +62,7 @@ export const UserForm = () => {
                             Repetir Clave
                         </label>
                         <input
-                            type='text'
+                            type='password'
                             className='form-control'
                             placeholder='Repetir Clave'
                             onChange={handlePasswordConfirmation}
